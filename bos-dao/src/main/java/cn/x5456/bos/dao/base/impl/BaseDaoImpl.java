@@ -149,6 +149,8 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
         // 2.分页查询，封装到rows中
         // 将上面的条件清空 select count(*) ... ==> select * ...
         detachedCriteria.setProjection(null);
+        // 3.指定封装对象的方式
+        detachedCriteria.setResultTransformer(DetachedCriteria.ROOT_ENTITY);
 
         Integer firstResult = (currentPage - 1) * pageSize;
         Integer maxResults = pageSize;

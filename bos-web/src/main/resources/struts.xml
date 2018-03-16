@@ -63,7 +63,7 @@
         <action name="subareaAction_*" class="subareaAction" method="{1}">
             <!--<result name="login">/login.jsp</result>-->
             <result name="list">/WEB-INF/pages/base/subarea.jsp</result>
-            <allowed-methods>add</allowed-methods>
+            <allowed-methods>add,pageQuery,exportXls</allowed-methods>
         </action>
     </package>
 </struts>
