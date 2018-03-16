@@ -89,7 +89,7 @@ public class RegionAction extends BaseAction<Region> {
         // 3.调用service层方法执行查询
         regionService.pageQuery(pageBean);
 
-        super.writeJson(pageBean, new String[]{"currentPage", "detachedCriteria", "pageSize"});
+        super.writeJson(pageBean, new String[]{"currentPage", "detachedCriteria", "pageSize", "subareas"});
 
         return "none";
     }

@@ -196,6 +196,8 @@
         function doDblClickRow() {
             alert("双击表格数据...");
         }
+
+
     </script>
 </head>
 <body class="easyui-layout" style="visibility:hidden;">
@@ -211,8 +213,16 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+        $(function () {
+            $("#save").click(function () {
+                $("#saveForm").submit()
+            })
+        })
+    </script>
+
     <div style="overflow:auto;padding:5px;" border="false">
-        <form>
+        <form id="saveForm" action="${pageContext.request.contextPath}/subareaAction_add.action" method="post">
             <table class="table-edit" width="80%" align="center">
                 <tr class="title">
                     <td colspan="2">分区信息</td>
