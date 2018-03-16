@@ -1,14 +1,8 @@
 package cn.x5456.bos.web.action;
 
-import cn.x5456.bos.PageUtils;
-import cn.x5456.bos.dao.IStaffDao;
 import cn.x5456.bos.domain.Staff;
 import cn.x5456.bos.service.IStaffService;
-import cn.x5456.bos.web.BaseAction;
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
-import org.apache.struts2.ServletActionContext;
-import org.hibernate.criterion.DetachedCriteria;
+import cn.x5456.bos.web.action.base.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

@@ -1,20 +1,10 @@
-import cn.x5456.bos.dao.IStaffDao;
-import cn.x5456.bos.dao.IUserDao;
 import cn.x5456.bos.domain.Staff;
-import cn.x5456.bos.domain.TUser;
 import cn.x5456.bos.service.IStaffService;
-import cn.x5456.bos.service.IUserService;
-import cn.x5456.bos.web.BaseAction;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)     // 创建容器

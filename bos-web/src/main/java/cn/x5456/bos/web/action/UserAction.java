@@ -3,7 +3,7 @@ package cn.x5456.bos.web.action;
 import cn.x5456.bos.BOSUtils;
 import cn.x5456.bos.domain.TUser;
 import cn.x5456.bos.service.IUserService;
-import cn.x5456.bos.web.BaseAction;
+import cn.x5456.bos.web.action.base.BaseAction;
 import com.opensymphony.xwork2.ActionContext;
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
