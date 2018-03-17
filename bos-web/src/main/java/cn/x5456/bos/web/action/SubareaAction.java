@@ -125,4 +125,14 @@ public class SubareaAction extends BaseAction<Subarea> {
         workbook.write(out);
         return NONE;
     }
+
+
+    public String listajax() throws Exception {
+
+        List<Subarea> list = subareaService.listajax();
+
+        super.writeJson(list, new String[]{"decidedzone", "region"});
+
+        return "none";
+    }
 }

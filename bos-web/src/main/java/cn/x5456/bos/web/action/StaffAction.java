@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component     // 注册当前类到容器中
 @Scope(scopeName = "prototype")   // 指定对象是单例还是多例
 public class StaffAction extends BaseAction<Staff> {
@@ -66,5 +68,15 @@ public class StaffAction extends BaseAction<Staff> {
         staffService.update(staff);
 
         return "list";
+    }
+
+
+    public String listajax() throws Exception {
+
+        List<Staff> list = staffService.listajax();
+
+        super.writeJson(list, new String[]{"decidedzones"});
+
+        return "none";
     }
 }

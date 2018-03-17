@@ -3,6 +3,7 @@ package cn.x5456.bos.dao.base.impl;
 import cn.x5456.bos.PageUtils;
 import cn.x5456.bos.dao.base.IBaseDao;
 import cn.x5456.bos.domain.Region;
+import cn.x5456.bos.domain.Staff;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -164,6 +165,13 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
     public void saveOrUpdate(T entity) {
 
         super.getHibernateTemplate().saveOrUpdate(entity);
+
+    }
+
+    @Override
+    public List<T> findAll(DetachedCriteria dc) {
+
+        return (List<T>) super.getHibernateTemplate().findByCriteria(dc);
 
     }
 }

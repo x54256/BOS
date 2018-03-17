@@ -2,6 +2,8 @@ package cn.x5456.bos.dao.base;
 
 import cn.x5456.bos.PageUtils;
 import cn.x5456.bos.domain.Region;
+import cn.x5456.bos.domain.Staff;
+import org.hibernate.criterion.DetachedCriteria;
 
 import java.io.Serializable;
 import java.util.List;
@@ -28,4 +30,6 @@ public interface IBaseDao<T> {
     void pageQuery(PageUtils pageBean);
 
     void saveOrUpdate(T entity);
+
+    List<T> findAll(DetachedCriteria dc);
 }

@@ -12,4 +12,6 @@ public interface ISubareaService {
     void pageQuery(PageUtils pageBean);
 
     List<Subarea> findAll();
+
+    List<Subarea> listajax();
 }
