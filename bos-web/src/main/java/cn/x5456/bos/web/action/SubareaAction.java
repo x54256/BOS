@@ -135,4 +135,25 @@ public class SubareaAction extends BaseAction<Subarea> {
 
         return "none";
     }
+
+    private String decidedzoneId;
+
+    public void setDecidedzoneId(String decidedzoneId) {
+        this.decidedzoneId = decidedzoneId;
+    }
+
+    /**
+     * 根据decidedzoneId查询区域信息
+     *
+     * @return
+     * @throws Exception
+     */
+    public String findByDecidedzoneId() throws Exception {
+
+        List<Subarea> list = subareaService.findByDecidedzoneId(decidedzoneId);
+
+        super.writeJson(list, new String[]{"decidedzone", "subareas"});
+
+        return "none";
+    }
 }

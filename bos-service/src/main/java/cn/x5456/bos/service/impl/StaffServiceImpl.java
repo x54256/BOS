@@ -5,6 +5,7 @@ import cn.x5456.bos.dao.IStaffDao;
 import cn.x5456.bos.domain.Staff;
 import cn.x5456.bos.service.IStaffService;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,6 +63,7 @@ public class StaffServiceImpl implements IStaffService {
     public List<Staff> listajax() {
 
         DetachedCriteria dc = DetachedCriteria.forClass(Staff.class);
+        dc.add(Restrictions.eq("deltag", "0"));
 
         return staffDao.findAll(dc);
 

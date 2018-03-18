@@ -51,4 +51,14 @@ public class SubareaServiceImpl implements ISubareaService {
         return subareaDao.findAll(dc);
 
     }
+
+    @Override
+    public List<Subarea> findByDecidedzoneId(String decidedzoneId) {
+        // 1.创建离线查询对象
+        DetachedCriteria dc = DetachedCriteria.forClass(Subarea.class);
+        // 2.添加条件；由于查询的字段在本表中有，所以就不用起别名的内种方法了
+        dc.add(Restrictions.eq("decidedzone.id", decidedzoneId));
+        // 3.查询并返回
+        return subareaDao.findAll(dc);
+    }
 }

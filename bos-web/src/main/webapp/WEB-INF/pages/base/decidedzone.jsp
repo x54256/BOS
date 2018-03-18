@@ -44,7 +44,48 @@
         }
 
         function doAssociations() {
-            $('#customerWindow').window('open');
+
+            // 1.获取当前数据表格所有选中的行，返回数组
+            var row = $("#grid").datagrid("getSelections");
+            // 2.判断是否选中一行
+            if (row.length != 1) {
+                // 弹出提示框
+                $.messager.alert("提示信息", "请选择一个定区操作！", "warning")
+            } else {
+                // 弹出修改框
+                $('#customerWindow').window('open');
+                // 3.清理下拉框中的内容
+                $("#noassociationSelect").empty();
+                $("#associationSelect").empty();
+                // 4.发送ajax请求加载下拉框中的内容
+                var url_1 = "decidedzoneAction_findListNotAssociation.action";
+                $.post(url_1, {}, function (dat) {
+                    for (var i = 0; i < dat.length; i++) {
+                        var id = dat[i].id;
+                        var name = dat[i].name;
+                        var telephone = dat[i].telephone;
+
+                        name = name + "(" + telephone + ")";
+
+                        $("#noassociationSelect").append("<option value='" + id + "'>" + name + "</option>");
+                    }
+
+                }, "json");
+
+                var url_2 = "decidedzoneAction_findListHasAssociation.action";
+                $.post(url_2, {"decidedzoneId": row[0].id}, function (dat) {
+                    for (var i = 0; i < dat.length; i++) {
+                        var id = dat[i].id;
+                        var name = dat[i].name;
+                        var telephone = dat[i].telephone;
+
+                        name = name + "(" + telephone + ")";
+
+                        $("#associationSelect").append("<option value='" + id + "'>" + name + "</option>");
+                    }
+
+                }, "json")
+            }
         }
 
         //工具栏
@@ -158,14 +199,18 @@
 
         });
 
-        function doDblClickRow() {
-            alert("双击表格数据...");
+        /**
+         *
+         * @param index：双击的那行的编号
+         * @param data：那行的数据
+         */
+        function doDblClickRow(index, data) {
             $('#association_subarea').datagrid({
                 fit: true,
                 border: true,
                 rownumbers: true,
                 striped: true,
-                url: "json/association_subarea.json",
+                url: "${pageContext.request.contextPath}/subareaAction_findByDecidedzoneId.action?decidedzoneId=" + data.id,
                 columns: [[{
                     field: 'id',
                     title: '分拣编号',
@@ -227,7 +272,7 @@
                 border: true,
                 rownumbers: true,
                 striped: true,
-                url: "json/association_customer.json",
+                url: "decidedzoneAction_findListHasAssociation.action?decidedzoneId=" + data.id,
                 columns: [[{
                     field: 'id',
                     title: '客户编号',
@@ -275,8 +320,10 @@
         </div>
     </div>
     <script type="text/javascript">
-        $("#save").click(function () {
-            $("#saveForm").submit()
+        $(function () {
+            $("#save").click(function () {
+                $("#saveForm").submit()
+            })
         })
     </script>
 
@@ -347,11 +394,12 @@
 </div>
 
 <!-- 关联客户窗口 -->
-<div class="easyui-window" title="关联客户窗口" id="customeRrWindow" collapsible="false" closed="true" minimizable="false"
+<div modal="true" class="easyui-window" title="关联客户窗口" id="customerWindow" collapsible="false" closed="true"
+     minimizable="false"
      maximizable="false" style="top:20px;left:200px;width: 400px;height: 300px;">
     <div style="overflow:auto;padding:5px;" border="false">
         <form id="customerForm"
-              action="${pageContext.request.contextPath }/decidedzone_assigncustomerstodecidedzone.action"
+              action="${pageContext.request.contextPath }/decidedzoneAction_assigncustomerstodecidedzone.action"
               method="post">
             <table class="table-edit" width="80%" align="center">
                 <tr class="title">
@@ -359,12 +407,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="hidden" name="id" id="customerDecidedZoneId"/>
+                        <input type="hidden" name="decidedzoneId" id="customerDecidedZoneId"/>
                         <select id="noassociationSelect" multiple="multiple" size="10"></select>
                     </td>
                     <td>
                         <input type="button" value="》》" id="toRight"><br/>
                         <input type="button" value="《《" id="toLeft">
+
                     </td>
                     <td>
                         <select id="associationSelect" name="customerIds" multiple="multiple" size="10"></select>
@@ -376,6 +425,30 @@
                 </tr>
             </table>
         </form>
+        <script type="text/javascript">
+            $(function () {
+                $("#toRight").click(function () {
+                    // 将选中的option移动（append）到另一边
+                    $("#associationSelect").append($("#noassociationSelect option:selected"))
+                });
+
+                $("#toLeft").click(function () {
+                    // 将选中的option移动（append）到另一边
+                    $("#noassociationSelect").append($("#associationSelect option:selected"))
+                });
+
+                $("#associationBtn").click(function () {
+                    var row = $("#grid").datagrid("getSelections");
+                    var id = row[0].id;
+                    // 为隐藏域赋（定区）值
+                    $("input[name='decidedzoneId']").val(id);
+                    // 在表单提交钱，将右侧下拉框全部选中；因为只会提交选中的
+                    $("#associationSelect option").attr("selected", "selected");
+                    // 提交表单
+                    $("#customerForm").submit()
+                })
+            })
+        </script>
     </div>
 </div>
 </body>

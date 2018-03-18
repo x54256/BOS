@@ -201,17 +201,17 @@
 
         <!--坑爹的Java9-->
 
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.2.12</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>javax.xml.bind</groupId>-->
+        <!--<artifactId>jaxb-api</artifactId>-->
+        <!--<version>2.2.12</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-            <version>1.1.1</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>javax.activation</groupId>-->
+        <!--<artifactId>activation</artifactId>-->
+        <!--<version>1.1.1</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 
@@ -308,4 +308,20 @@
         抽取出 ===> save(Critererrfdscksldc)
 
         有多张表插入的操作
+
+        soap协议：规定了我们传输的文本的格式
+
+
+        easyUI遮罩层效果：modal="true"
+
+
+        所需查询的在另一张表中（需要join时），使用别名
+
+        在同一张表中，可以直接decidedzone.id
+
+        /**
+        一个是要查询另一张表中的字段，region.省/市/区     where r.name...
+
+        一个是只查询本表的就行了
+
         -->
