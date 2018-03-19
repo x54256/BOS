@@ -64,10 +64,19 @@
         </action>
 
         <action name="decidedzoneAction_*" class="decidedzoneAction" method="{1}">
-            <!--<result name="login">/login.jsp</result>-->
             <result name="list">/WEB-INF/pages/base/decidedzone.jsp</result>
             <allowed-methods>save,pageQuery,findListHasAssociation,findListNotAssociation,assigncustomerstodecidedzone
             </allowed-methods>
+        </action>
+
+        <action name="noticebillAction_*" class="noticebillAction" method="{1}">
+            <result name="add">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
+            <allowed-methods>findCustomerByTelephone,add</allowed-methods>
+        </action>
+
+        <action name="noticebillAction_*" class="noticebillAction" method="{1}">
+            <result name="add">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
+            <allowed-methods>findCustomerByTelephone,add</allowed-methods>
         </action>
     </package>
 </struts>

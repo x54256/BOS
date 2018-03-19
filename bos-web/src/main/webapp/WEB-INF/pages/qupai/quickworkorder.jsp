@@ -163,7 +163,10 @@
                 columns: columns,
                 onDblClickRow: doDblClickRow,
                 onAfterEdit: function (rowIndex, rowData, changes) {
-                    console.info(rowData);
+                    $.post("noticebillAction_handAdd.action", rowData, function () {
+
+                    }, "json");
+                    // console.info(rowData);
                     editIndex = undefined;
                 }
             });
