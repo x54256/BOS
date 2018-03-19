@@ -7,5 +7,5 @@ public interface IUserService {
 
     void saveUser(TUser model);
 
-    void editPassword(String password, Integer id);
+    void editPassword(String password, String id);
 }

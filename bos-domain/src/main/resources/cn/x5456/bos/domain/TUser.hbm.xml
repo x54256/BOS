@@ -1,42 +1,46 @@
-<?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-
-    <class name="cn.x5456.bos.domain.TUser" table="t_user" schema="BOSdb">
-        <id name="id">
-            <column name="id" sql-type="int(11)"/>
+    <class name="cn.x5456.bos.domain.TUser" table="t_user">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="32"/>
+            <generator class="assigned"/>
         </id>
-        <property name="username">
-            <column name="username" sql-type="varchar(255)" not-null="true"/>
+        <property name="username" type="java.lang.String">
+            <column name="username" length="20" not-null="true"/>
         </property>
-        <property name="password">
-            <column name="password" sql-type="varchar(255)" not-null="true"/>
+        <property name="password" type="java.lang.String">
+            <column name="password" length="32" not-null="true"/>
         </property>
-        <property name="salary">
-            <column name="salary" sql-type="double" precision="-1"/>
+        <property name="salary" type="java.lang.Double">
+            <column name="salary" precision="22" scale="0"/>
         </property>
-        <property name="birthday">
-            <column name="birthday" sql-type="date"/>
+        <property name="birthday" type="java.util.Date">
+            <column name="birthday" length="0"/>
         </property>
-        <property name="gender">
-            <column name="gender" sql-type="varchar(255)"/>
+        <property name="gender" type="java.lang.String">
+            <column name="gender" length="10"/>
         </property>
-        <property name="station">
-            <column name="station" sql-type="varchar(255)"/>
+        <property name="station" type="java.lang.String">
+            <column name="station" length="40"/>
         </property>
-        <property name="telephone">
-            <column name="telephone" sql-type="varchar(255)"/>
+        <property name="telephone" type="java.lang.String">
+            <column name="telephone" length="11"/>
         </property>
-        <property name="remark">
-            <column name="remark" sql-type="varchar(255)"/>
+        <property name="remark" type="java.lang.String">
+            <column name="remark"/>
         </property>
+        <set name="roles" table="user_role">
+            <key>
+                <column name="user_id" length="32" not-null="true"/>
+            </key>
+            <many-to-many entity-name="cn.x5456.bos.domain.Role">
+                <column name="role_id" length="32" not-null="true"/>
+            </many-to-many>
+        </set>
     </class>
-
     <query name="user.editpassword">
-        update TUser set password=? where id=?
+        UPDATE TUser SET password = ? WHERE id = ?
     </query>
-
-
 </hibernate-mapping>

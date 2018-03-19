@@ -37,7 +37,7 @@ public class StaffAction extends BaseAction<Staff> {
         // 2.调用service层方法，传递工具类对象
         staffService.pageQuery(pageBean);
 
-        super.writeJson(pageBean, new String[]{"currentPage", "detachedCriteria", "pageSize"});
+        super.writeJson(pageBean, new String[]{"currentPage", "detachedCriteria", "pageSize", "decidedzones"});
 
 
         return "none";

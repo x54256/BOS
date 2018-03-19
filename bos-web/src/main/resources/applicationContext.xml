@@ -72,10 +72,41 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
 
-    <!-- 注册crm客户端代理对象 -->
+    <!-- *************************注册crm客户端代理对象*************************-->
     <jaxws:client id="crmClient"
                   serviceClass="cn.x5456.crmClient.ICustomerService"
                   address="http://127.0.0.1:8889/crm/service/customer"/>
 
+
+    <!-- *************************配置shiro框架的过滤工厂************************* -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/login.jsp"/>
+        <property name="successUrl" value="/index.jsp"/>
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+
+        <!--设定URL级别拦截策略-->
+        <property name="filterChainDefinitions">
+            <value>
+                /css/** = anon
+                /js/** = anon
+                /images/** = anon
+                /validatecode.jsp* = anon
+                /login.jsp = anon
+                /userAction_login.action = anon
+                /page_base_staff.action = perms["staff-list"]
+                /* = authc
+            </value>
+        </property>
+    </bean>
+
+    <!--配置安全管理器-->
+    <bean name="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="bosRealm"/>
+    </bean>
+
+
+    <!--注册自定义的realm-->
+    <bean name="bosRealm" class="cn.x5456.bos.web.realm.BOSRealm"/>
 
 </beans>

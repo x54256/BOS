@@ -17,6 +17,16 @@
     </context-param>
 
 
+    <!--过滤器，整合shiro-->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <!-- 扩大session作用范围
     注意: 任何filter一定要在struts的filter之前调用（因为如果Struts的拦截器没有放行，就根本走不了我们的filter）
     -->

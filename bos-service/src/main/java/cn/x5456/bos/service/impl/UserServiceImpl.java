@@ -29,7 +29,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void editPassword(String password, Integer id) {
+    public void editPassword(String password, String id) {
 
         String passwd = MD5Utils.md5(password);
 

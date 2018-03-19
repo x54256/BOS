@@ -1,12 +1,18 @@
 package cn.x5456.bos.domain;
 
-import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity
-@Table(name = "t_user", schema = "BOSdb", catalog = "")
-public class TUser {
-    private int id;
+/**
+ * 用户实体
+ */
+
+public class TUser implements java.io.Serializable {
+
+    // Fields
+
+    private String id;
     private String username;
     private String password;
     private Double salary;
@@ -15,143 +21,131 @@ public class TUser {
     private String station;
     private String telephone;
     private String remark;
+    private Set noticebills = new HashSet(0);
+    private Set roles = new HashSet(0);
 
-    @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
+    // Constructors
+
+    /**
+     * default constructor
+     */
+    public TUser() {
     }
 
-    public void setId(int id) {
+    /**
+     * minimal constructor
+     */
+    public TUser(String id) {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "username", nullable = false, length = 255)
+    /**
+     * full constructor
+     */
+    public TUser(String id, String username, String password, Double salary,
+                 Date birthday, String gender, String station, String telephone,
+                 String remark, Set noticebills, Set roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.salary = salary;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.station = station;
+        this.telephone = telephone;
+        this.remark = remark;
+        this.noticebills = noticebills;
+        this.roles = roles;
+    }
+
+    // Property accessors
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    @Basic
-    @Column(name = "password", nullable = false, length = 255)
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "salary", nullable = true, precision = 0)
     public Double getSalary() {
-        return salary;
+        return this.salary;
     }
 
     public void setSalary(Double salary) {
         this.salary = salary;
     }
 
-    @Basic
-    @Column(name = "birthday", nullable = true)
     public Date getBirthday() {
-        return birthday;
+        return this.birthday;
     }
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
-    @Basic
-    @Column(name = "gender", nullable = true, length = 255)
     public String getGender() {
-        return gender;
+        return this.gender;
     }
 
     public void setGender(String gender) {
         this.gender = gender;
     }
 
-    @Basic
-    @Column(name = "station", nullable = true, length = 255)
     public String getStation() {
-        return station;
+        return this.station;
     }
 
     public void setStation(String station) {
         this.station = station;
     }
 
-    @Basic
-    @Column(name = "telephone", nullable = true, length = 255)
     public String getTelephone() {
-        return telephone;
+        return this.telephone;
     }
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
-    @Basic
-    @Column(name = "remark", nullable = true, length = 255)
     public String getRemark() {
-        return remark;
+        return this.remark;
     }
 
     public void setRemark(String remark) {
         this.remark = remark;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TUser tUser = (TUser) o;
-
-        if (id != tUser.id) return false;
-        if (username != null ? !username.equals(tUser.username) : tUser.username != null) return false;
-        if (password != null ? !password.equals(tUser.password) : tUser.password != null) return false;
-        if (salary != null ? !salary.equals(tUser.salary) : tUser.salary != null) return false;
-        if (birthday != null ? !birthday.equals(tUser.birthday) : tUser.birthday != null) return false;
-        if (gender != null ? !gender.equals(tUser.gender) : tUser.gender != null) return false;
-        if (station != null ? !station.equals(tUser.station) : tUser.station != null) return false;
-        if (telephone != null ? !telephone.equals(tUser.telephone) : tUser.telephone != null) return false;
-        if (remark != null ? !remark.equals(tUser.remark) : tUser.remark != null) return false;
-
-        return true;
+    public Set getNoticebills() {
+        return this.noticebills;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (salary != null ? salary.hashCode() : 0);
-        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
-        result = 31 * result + (gender != null ? gender.hashCode() : 0);
-        result = 31 * result + (station != null ? station.hashCode() : 0);
-        result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
-        result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        return result;
+    public void setNoticebills(Set noticebills) {
+        this.noticebills = noticebills;
     }
 
-    @Override
-    public String toString() {
-        return "TUser{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", salary=" + salary +
-                ", birthday=" + birthday +
-                ", gender='" + gender + '\'' +
-                ", station='" + station + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", remark='" + remark + '\'' +
-                '}';
+    public Set getRoles() {
+        return this.roles;
     }
+
+    public void setRoles(Set roles) {
+        this.roles = roles;
+    }
+
 }

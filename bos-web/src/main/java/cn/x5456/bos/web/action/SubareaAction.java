@@ -119,7 +119,7 @@ public class SubareaAction extends BaseAction<Subarea> {
         ServletActionContext.getResponse().setContentType(contentType);
 
         //获取客户端浏览器类型
-        String agent = ServletActionContext.getRequest().getHeader("User-Agent");
+        String agent = ServletActionContext.getRequest().getHeader("TUser-Agent");
         filename = FileUtils.encodeDownloadFilename(filename, agent);
         ServletActionContext.getResponse().setHeader("content-disposition", "attachment;filename=" + filename);
         workbook.write(out);

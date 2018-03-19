@@ -1,11 +1,16 @@
 package cn.x5456.bos.web.action;
 
 import cn.x5456.bos.BOSUtils;
+import cn.x5456.bos.MD5Utils;
 import cn.x5456.bos.domain.TUser;
 import cn.x5456.bos.service.IUserService;
 import cn.x5456.bos.web.action.base.BaseAction;
 import com.opensymphony.xwork2.ActionContext;
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -25,30 +30,57 @@ public class UserAction extends BaseAction<TUser> {
         this.checkcode = checkcode;
     }
 
-    public String login() throws Exception {
-
-        // 1.获取session中的验证码
-        String realCode = (String) ActionContext.getContext().getSession().get("key");
-        // 2.进行验证码校验
-        if (StringUtils.isNotBlank(checkcode) && checkcode.equals(realCode)) {
-            // 3.调用service，通过用户名和密码查询user对象
-            TUser u = userService.findUser(super.model);
-            // 4.判断返回值是否为null
-            if (u == null) {
-                // null设置异常，并返回
-                this.addActionError("用户名或者密码输入错误！");
+    /**
+     * 用户登录,使用shiro框架提供的方式进行认证操作
+     */
+    public String login() {
+        //从Session中获取生成的验证码
+        String validatecode = (String) ServletActionContext.getRequest().getSession().getAttribute("key");
+        //校验验证码是否输入正确
+        if (StringUtils.isNotBlank(checkcode) && checkcode.equals(validatecode)) {
+            //使用shiro框架提供的方式进行认证操作
+            Subject subject = SecurityUtils.getSubject();//获得当前用户对象,状态为“未认证”
+            AuthenticationToken token = new UsernamePasswordToken(model.getUsername(), MD5Utils.md5(model.getPassword()));//创建用户名密码令牌对象
+            try {
+                subject.login(token);
+            } catch (Exception e) {
+                e.printStackTrace();
                 return "login";
-            } else {
-                // 将user对象加入session中，并跳转到首页
-                ActionContext.getContext().getSession().put("loginUser", u);
-                return "home";
             }
+            TUser user = (TUser) subject.getPrincipal();
+            ServletActionContext.getRequest().getSession().setAttribute("loginUser", user);
+            return "home";
         } else {
-            // 不同 ==> 抛出异常
-            super.addActionError("输入的验证码错误！");
+            //输入的验证码错误,设置提示信息，跳转到登录页面
+            this.addActionError("输入的验证码错误！");
             return "login";
         }
     }
+
+//    public String login() throws Exception {
+//
+//        // 1.获取session中的验证码
+//        String realCode = (String) ActionContext.getContext().getSession().get("key");
+//        // 2.进行验证码校验
+//        if (StringUtils.isNotBlank(checkcode) && checkcode.equals(realCode)) {
+//            // 3.调用service，通过用户名和密码查询user对象
+//            TUser u = userService.findUser(super.model);
+//            // 4.判断返回值是否为null
+//            if (u == null) {
+//                // null设置异常，并返回
+//                this.addActionError("用户名或者密码输入错误！");
+//                return "login";
+//            } else {
+//                // 将user对象加入session中，并跳转到首页
+//                ActionContext.getContext().getSession().put("loginUser", u);
+//                return "home";
+//            }
+//        } else {
+//            // 不同 ==> 抛出异常
+//            super.addActionError("输入的验证码错误！");
+//            return "login";
+//        }
+//    }
 
     // 退出登录
     public String logout() throws Exception {
@@ -69,7 +101,7 @@ public class UserAction extends BaseAction<TUser> {
         String flag = "1";
 
         // 获取当前用户的id
-        Integer id = BOSUtils.getLoginUser().getId();
+        String id = BOSUtils.getLoginUser().getId();
         // 获取前端传来的密码
         String password = super.model.getPassword();
 

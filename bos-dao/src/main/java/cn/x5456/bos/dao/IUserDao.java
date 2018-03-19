@@ -5,4 +5,6 @@ import cn.x5456.bos.domain.TUser;
 
 public interface IUserDao extends IBaseDao<TUser> {
     TUser findByTUser(String username, String password);
+
+    TUser findUserByUserName(String username);
 }
