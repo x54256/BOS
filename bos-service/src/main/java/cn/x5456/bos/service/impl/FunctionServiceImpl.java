@@ -27,6 +27,12 @@ public class FunctionServiceImpl implements IFunctionService {
 
     @Override
     public void add(Function model) {
+        Function parentFunction = model.getParentFunction();
+
+        if (parentFunction.getId() != null && parentFunction.getId().equals("")) {
+            model.setParentFunction(null);
+        }
+
         functionDao.save(model);
     }
 
