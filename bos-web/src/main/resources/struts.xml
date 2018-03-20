@@ -17,6 +17,7 @@
 
     <package name="basicstruts2" extends="struts-default">
 
+
         <interceptors>
             <!-- 1.注册拦截器 -->
             <interceptor name="loginInterceptor" class="cn.x5456.bos.web.interceptor.LoginInterceptor"/>
@@ -34,7 +35,12 @@
 
         <global-results>
             <result name="login" type="redirect">/login.jsp</result>
+            <result name="unauthorized" type="redirect">/unauthorized.jsp</result>
         </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="org.apache.shiro.authz.UnauthorizedException" result="unauthorized"/>
+        </global-exception-mappings>
 
 
         <!-- 需要进行权限控制的页面访问 -->
@@ -74,9 +80,9 @@
             <allowed-methods>findCustomerByTelephone,add</allowed-methods>
         </action>
 
-        <action name="noticebillAction_*" class="noticebillAction" method="{1}">
-            <result name="add">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
-            <allowed-methods>findCustomerByTelephone,add</allowed-methods>
+        <action name="functionAction_*" class="functionAction" method="{1}">
+            <result name="add">/WEB-INF/pages/admin/function_add.jsp</result>
+            <allowed-methods>listajax,add,pageQuery</allowed-methods>
         </action>
     </package>
 </struts>

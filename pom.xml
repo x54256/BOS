@@ -339,4 +339,15 @@
         ** ==》 匹配它和它的子目录
 
         return null 抛异常
+
+
+        为什么必须使用cglib代理？     继承才有内些方法
+
+        select 如果没选的话，会提交空串
+
+        防止手动恶意访问if(function!=null)
+
+        参数同名问题，会先给model赋值
+            1）删除model中的字段
+            2）将page从model中get出来，在给pagebean赋值
         -->

@@ -3,6 +3,7 @@ package cn.x5456.bos.web.action;
 import cn.x5456.bos.domain.Staff;
 import cn.x5456.bos.service.IStaffService;
 import cn.x5456.bos.web.action.base.BaseAction;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -32,6 +33,7 @@ public class StaffAction extends BaseAction<Staff> {
     }
 
 
+    @RequiresPermissions("staff-list")
     public String pageQuery() throws Exception {
 
         // 2.调用service层方法，传递工具类对象
@@ -44,6 +46,13 @@ public class StaffAction extends BaseAction<Staff> {
     }
 
 
+    /**
+     * 取派员的批量删除
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequiresPermissions("staff-delete")    // 执行这个方法，需要用户具有staff-delete这个权限
     public String deleteBatch() throws Exception {
 
         // 调用service层方法
