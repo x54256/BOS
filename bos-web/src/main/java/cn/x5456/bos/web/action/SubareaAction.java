@@ -156,4 +156,14 @@ public class SubareaAction extends BaseAction<Subarea> {
 
         return "none";
     }
+
+
+    public String findSubareasGroupByProvince() throws Exception {
+
+        List<Object> list = subareaService.findSubareasGroupByProvince();
+
+        super.writeJson(list, new String[]{});
+
+        return "none";
+    }
 }

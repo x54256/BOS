@@ -67,7 +67,8 @@
 
         <action name="subareaAction_*" class="subareaAction" method="{1}">
             <result name="list">/WEB-INF/pages/base/subarea.jsp</result>
-            <allowed-methods>add,pageQuery,exportXls,listajax,findByDecidedzoneId</allowed-methods>
+            <allowed-methods>add,pageQuery,exportXls,listajax,findByDecidedzoneId,findSubareasGroupByProvince
+            </allowed-methods>
         </action>
 
         <action name="decidedzoneAction_*" class="decidedzoneAction" method="{1}">

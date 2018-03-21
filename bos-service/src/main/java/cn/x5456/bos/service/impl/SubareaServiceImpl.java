@@ -61,4 +61,9 @@ public class SubareaServiceImpl implements ISubareaService {
         // 3.查询并返回
         return subareaDao.findAll(dc);
     }
+
+    @Override
+    public List<Object> findSubareasGroupByProvince() {
+        return subareaDao.findSubareasGroupByProvince();
+    }
 }

@@ -213,6 +213,25 @@
         <!--<version>1.1.1</version>-->
         <!--</dependency>-->
 
+        <!--引入Quertz-->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jobs</artifactId>
+            <version>2.2.3</version>
+        </dependency>
+
+        <!--java mail-->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -359,4 +378,6 @@
         数据库查询去重：distinct
 
         缓存当你退出时，也会清理掉
+
+
         -->
