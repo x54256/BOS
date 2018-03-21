@@ -239,7 +239,7 @@
                 <version>2.2</version>
                 <configuration>
                     <path>/bos</path>
-                    <port>8888</port>
+                    <port>8000</port>
                 </configuration>
             </plugin>
         </plugins>
@@ -350,4 +350,13 @@
         参数同名问题，会先给model赋值
             1）删除model中的字段
             2）将page从model中get出来，在给pagebean赋值
+
+
+        接收参数的字段的get方法是在jsp页面，使用ognl表达式获取我们接收到的参数时使用
+
+        角色关联权限：检查映射文件是否有inverse
+
+        数据库查询去重：distinct
+
+        缓存当你退出时，也会清理掉
         -->

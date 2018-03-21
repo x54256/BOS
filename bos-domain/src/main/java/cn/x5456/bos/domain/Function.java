@@ -22,6 +22,14 @@ public class Function implements java.io.Serializable {
     private Set roles = new HashSet(0);//当前权限对应的多个角色
     private Set children = new HashSet(0);//当前权限的下级权限
 
+
+    public String getpId() {
+        if (parentFunction == null) {
+            return "0";     // 顶级菜单，否则报空指针异常
+        }
+        return parentFunction.id;
+    }
+
     public String getId() {
         return id;
     }
@@ -39,6 +47,10 @@ public class Function implements java.io.Serializable {
     }
 
     public String getName() {
+        return name;
+    }
+
+    public String getText() {
         return name;
     }
 

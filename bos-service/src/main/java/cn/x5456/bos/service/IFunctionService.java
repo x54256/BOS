@@ -11,4 +11,6 @@ public interface IFunctionService {
     void add(Function model);
 
     void pageQuery(PageUtils pageBean);
+
+    List<Function> findMenuByUserId();
 }

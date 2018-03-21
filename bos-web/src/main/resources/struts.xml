@@ -50,8 +50,9 @@
 
         <action name="userAction_*" class="userAction" method="{1}">
             <result name="login">/login.jsp</result>
+            <result name="list">/WEB-INF/pages/admin/userlist.jsp</result>
             <result name="home" type="redirect">/index.jsp</result>
-            <allowed-methods>login,logout,editPassword</allowed-methods>
+            <allowed-methods>login,logout,editPassword,add,pageQuery</allowed-methods>
         </action>
 
         <action name="staffAction_*" class="staffAction" method="{1}">
@@ -82,7 +83,12 @@
 
         <action name="functionAction_*" class="functionAction" method="{1}">
             <result name="add">/WEB-INF/pages/admin/function_add.jsp</result>
-            <allowed-methods>listajax,add,pageQuery</allowed-methods>
+            <allowed-methods>listajax,add,pageQuery,menu</allowed-methods>
+        </action>
+
+        <action name="roleAction_*" class="roleAction" method="{1}">
+            <result name="list">/WEB-INF/pages/admin/role.jsp</result>
+            <allowed-methods>add,pageQuery,listajax</allowed-methods>
         </action>
     </package>
 </struts>

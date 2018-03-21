@@ -20,7 +20,7 @@ public class FunctionAction extends BaseAction<Function> {
 
         List<Function> list = functionService.listajax();
 
-        super.writeJson(list, new String[]{"roles", "children", "parentFunction"});
+        super.writeJson(list, new String[]{"roles", "parentFunction"});
 
         return "none";
     }
@@ -40,6 +40,16 @@ public class FunctionAction extends BaseAction<Function> {
         functionService.pageQuery(super.pageBean);
 
         super.writeJson(pageBean, new String[]{"roles", "children", "parentFunction", "currentPage", "pageSize", "pageSize"});
+
+        return "none";
+    }
+
+
+    public String menu() throws Exception {
+
+        List<Function> list = functionService.findMenuByUserId();
+
+        super.writeJson(list, new String[]{"parentFunction", "roles", "children"});
 
         return "none";
     }

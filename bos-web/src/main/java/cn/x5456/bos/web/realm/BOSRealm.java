@@ -1,6 +1,8 @@
 package cn.x5456.bos.web.realm;
 
+import cn.x5456.bos.dao.IFunctionDao;
 import cn.x5456.bos.dao.IUserDao;
+import cn.x5456.bos.domain.Function;
 import cn.x5456.bos.domain.TUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -11,12 +13,18 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 public class BOSRealm extends AuthorizingRealm {
 
     @Autowired
     private IUserDao userDao;
+
+    @Autowired
+    private IFunctionDao functionDao;
 
     //认证方法
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) {
@@ -40,13 +48,24 @@ public class BOSRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
         // 获取用户对象
-        TUser user1 = (TUser) SecurityUtils.getSubject().getPrincipal();
-        TUser user2 = (TUser) principals.getPrimaryPrincipal();
-        System.out.println(user1 == user2);
+        TUser user = (TUser) SecurityUtils.getSubject().getPrincipal();
+        //        TUser user2 = (TUser) principals.getPrimaryPrincipal();
+        //        System.out.println(user1 == user2);
 
-        // TODO 根据用户对象查询数据库进行授权
+        List<Function> functionList = null;
+        if (user.getUsername().equals("admin")) {
+            DetachedCriteria dc = DetachedCriteria.forClass(Function.class);
+            functionList = functionDao.findAll(dc);
+        } else {
+            functionList = functionDao.findByUserId(user.getId());
+        }
+
+
+        for (Function f : functionList) {
+            info.addStringPermission(f.getCode());
+        }
         // 直接（不查数据库）为用户授权
-        info.addStringPermission("staff-list");
+        //        info.addStringPermission("staff-list");
 
         return info;
     }

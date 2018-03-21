@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component     // 注册当前类到容器中
 @Scope(scopeName = "prototype")   // 指定对象是单例还是多例
 public class UserAction extends BaseAction<TUser> {
@@ -121,5 +123,27 @@ public class UserAction extends BaseAction<TUser> {
 
         return "none";
     }
+
+
+    private String[] roleIds;
+
+    public void setRoleIds(String[] roleIds) {
+        this.roleIds = roleIds;
+    }
+
+    public String add() throws Exception {
+
+        userService.saveUser(super.model, roleIds);
+
+        return "list";
+    }
+
+    public String pageQuery() throws Exception {
+
+        userService.pageQuery(super.pageBean);
+
+        super.writeJson(pageBean, new String[]{"noticebills", "roles"});
+
+        return "none";
+    }
 }
-// 数据字典：

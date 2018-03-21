@@ -1,7 +1,9 @@
 package cn.x5456.bos.service.impl;
 
 import cn.x5456.bos.MD5Utils;
+import cn.x5456.bos.PageUtils;
 import cn.x5456.bos.dao.IUserDao;
+import cn.x5456.bos.domain.Role;
 import cn.x5456.bos.domain.TUser;
 import cn.x5456.bos.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,21 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void saveUser(TUser model) {
+    public void saveUser(TUser model, String[] roleIds) {
+
+        // 将密码转成md5格式
+        String password = model.getPassword();
+        password = MD5Utils.md5(password);
+        model.setPassword(password);
+
+        userDao.save(model);
+
+        for (String roleId : roleIds) {
+            Role role = new Role();
+            role.setId(roleId);
+
+            model.getRoles().add(role);
+        }
 
     }
 
@@ -35,6 +51,11 @@ public class UserServiceImpl implements IUserService {
 
         userDao.executeUpdate("user.editpassword", passwd, id);
 
+    }
+
+    @Override
+    public void pageQuery(PageUtils pageBean) {
+        userDao.pageQuery(pageBean);
     }
 
 

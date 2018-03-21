@@ -1,5 +1,8 @@
 package cn.x5456.bos.domain;
 
+import org.apache.commons.lang.StringUtils;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,7 +25,24 @@ public class TUser implements java.io.Serializable {
     private String telephone;
     private String remark;
     private Set noticebills = new HashSet(0);
-    private Set roles = new HashSet(0);
+    private Set<Role> roles = new HashSet(0);
+
+    public String getBirthdayString() {
+        if (birthday != null) {
+            String format = new SimpleDateFormat("yyyy-MM-dd").format(birthday);
+            return format;
+        }
+        return "暂无数据";
+    }
+
+    public String getRoleName() {
+        String roleName = "";
+        for (Role r : roles) {
+            String name = r.getName();
+            roleName += name + "  ";
+        }
+        return roleName;
+    }
 
     // Constructors
 
@@ -149,3 +169,6 @@ public class TUser implements java.io.Serializable {
     }
 
 }
+/*
+{"currentPage":1,"detachedCriteria":{"alias":"this"},"pageSize":10,"rows":[{"birthday":{"date":20,"day":2,"hours":0,"minutes":0,"month":2,"nanos":0,"seconds":0,"time":1521475200000,"timezoneOffset":-480,"year":118},"birthdayString":"2018-03-20","gender":"1","id":"1","password":"a89b71bb5227c75d463dd82a03115738","remark":"","roleName":"","salary":0,"station":"","telephone":"","username":"admin"},{"birthday":{"date":20,"day":2,"hours":0,"minutes":0,"month":2,"nanos":0,"seconds":0,"time":1521475200000,"timezoneOffset":-480,"year":118},"birthdayString":"2018-03-20","gender":"1","id":"2","password":"a89b71bb5227c75d463dd82a03115738","remark":"","roleName":"","salary":0,"station":"","telephone":"","username":"x5456"},{"birthday":{"date":26,"day":1,"hours":0,"minutes":0,"month":1,"nanos":0,"seconds":0,"time":1519574400000,"timezoneOffset":-480,"year":118},"birthdayString":"2018-02-26","gender":"男","id":"ff80818162432f2b01624334ade60000","password":"a89b71bb5227c75d463dd82a03115738","remark":"","roleName":"管理员权限  普通用户  ","salary":1000,"station":"分公司","telephone":"18468118715","username":"xxx"}],"total":3}
+ */

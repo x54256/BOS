@@ -1,3 +1,5 @@
+import cn.x5456.bos.dao.IFunctionDao;
+import cn.x5456.bos.domain.Function;
 import cn.x5456.crmClient.Customer;
 import cn.x5456.crmClient.ICustomerService;
 import org.junit.Test;
@@ -14,23 +16,15 @@ import java.util.List;
 public class testAction {
 
     @Autowired
-    private ICustomerService proxy;
+    private IFunctionDao functionDao;
 
     @Test
     public void func() throws Exception {
 
-        List<Customer> customerList = proxy.findListNotAssociation();
-
-        System.out.println(customerList);
-
-    }
-
-    @Test
-    public void func2() throws Exception {
-
-        List<Customer> customerList = proxy.findListHasAssociation("123");
-
-        System.out.println(customerList);
+        List<Function> list = functionDao.findMenuByUserId("ff80818162432f2b01624334ade60000");
+        for (Function f : list) {
+            System.out.println(f.getName());
+        }
 
     }
 }

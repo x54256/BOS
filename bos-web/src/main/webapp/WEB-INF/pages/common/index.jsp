@@ -43,12 +43,11 @@
 
             // 基本功能菜单加载
             $.ajax({
-                url: '${pageContext.request.contextPath}/json/menu.json',
+                url: '${pageContext.request.contextPath}/functionAction_menu.action',
                 type: 'POST',
-                dataType: 'text',
+                dataType: 'json',
                 success: function (data) {
-                    var zNodes = eval("(" + data + ")");
-                    $.fn.zTree.init($("#treeMenu"), setting, zNodes);
+                    $.fn.zTree.init($("#treeMenu"), setting, data);
                 },
                 error: function (msg) {
                     alert('菜单加载异常!');

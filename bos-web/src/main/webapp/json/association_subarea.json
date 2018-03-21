@@ -29,3 +29,195 @@
     }
   ]
 }
+//
+//[
+//  {
+//    "code": "jichudangan",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "11",
+//    "name": "基础档案",
+//    "page": "",
+//    "zindex": 0
+//  },
+//  {
+//    "code": "standard",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "112",
+//    "name": "收派标准",
+//    "page": "page_base_standard.action",
+//    "zindex": 1
+//  },
+//  {
+//    "code": "staff",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "113",
+//    "name": "取派员设置",
+//    "page": "page_base_staff.action",
+//    "zindex": 2
+//  },
+//  {
+//    "code": "region",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "114",
+//    "name": "区域设置",
+//    "page": "page_base_region.action",
+//    "zindex": 3
+//  },
+//  {
+//    "code": "subarea",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "115",
+//    "name": "管理分区",
+//    "page": "page_base_subarea.action",
+//    "zindex": 4
+//  },
+//  {
+//    "code": "decidedzone",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "116",
+//    "name": "管理定区/调度排班",
+//    "page": "page_base_decidedzone.action",
+//    "zindex": 5
+//  },
+//  {
+//    "code": "shouli",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "12",
+//    "name": "受理",
+//    "page": "",
+//    "zindex": 1
+//  },
+//  {
+//    "code": "noticebill",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "121",
+//    "name": "业务受理",
+//    "page": "page_qupai_noticebill_add.action",
+//    "zindex": 0
+//  },
+//  {
+//    "code": "quickworkordermanage",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "122",
+//    "name": "工作单快速录入",
+//    "page": "page_qupai_quickworkorder.action",
+//    "zindex": 1
+//  },
+//  {
+//    "code": "workordermanageimport",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "124",
+//    "name": "工作单导入",
+//    "page": "page_qupai_workorderimport.action",
+//    "zindex": 3
+//  },
+//  {
+//    "code": "diaodu",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "13",
+//    "name": "调度",
+//    "page": "",
+//    "zindex": 2
+//  },
+//  {
+//    "code": "changestaff",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "131",
+//    "name": "查台转单",
+//    "page": "",
+//    "zindex": 0
+//  },
+//  {
+//    "code": "personalassign",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "132",
+//    "name": "人工调度",
+//    "page": "page_qupai_diaodu.action",
+//    "zindex": 1
+//  },
+//  {
+//    "code": "zhongzhuan",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "14",
+//    "name": "物流配送流程管理",
+//    "page": "",
+//    "zindex": 3
+//  },
+//  {
+//    "code": "start",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "141",
+//    "name": "启动配送流程",
+//    "page": "workOrderManageAction_list.action",
+//    "zindex": 0
+//  },
+//  {
+//    "code": "personaltask",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "142",
+//    "name": "查看个人任务",
+//    "page": "taskAction_findPersonalTask.action",
+//    "zindex": 1
+//  },
+//  {
+//    "code": "grouptask",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "143",
+//    "name": "查看我的组任务",
+//    "page": "taskAction_findGroupTask.action",
+//    "zindex": 2
+//  },
+//  {
+//    "code": "staff.delete",
+//    "description": "xxx",
+//    "generatemenu": "0",
+//    "id": "8a7e843355a4392d0155a43aa7150000",
+//    "name": "删除取派员",
+//    "page": "staffAction_delete.action",
+//    "zindex": 1
+//  },
+//  {
+//    "code": "itcast",
+//    "description": "",
+//    "generatemenu": "1",
+//    "id": "8a7e843355a442460155a442bcfc0000",
+//    "name": "传智播客",
+//    "page": "http://www.itcast.cn",
+//    "zindex": 1
+//  },
+//  {
+//    "code": "1",
+//    "description": "11",
+//    "generatemenu": "0",
+//    "id": "ff8081816241556101624158924b0000",
+//    "name": "1",
+//    "page": "1",
+//    "zindex": 1
+//  },
+//  {
+//    "code": "3",
+//    "description": "111233",
+//    "generatemenu": "0",
+//    "id": "ff808181624179880162417a5cf00000",
+//    "name": "3",
+//    "page": "3",
+//    "zindex": 3
+//  }
+//]
